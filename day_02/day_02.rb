@@ -1,10 +1,6 @@
 require "./day"
 
 class Day02 < Day
-  def initialize
-    super(2)
-  end
-
   def parse_input
     @input_ranges = read_lines.first.split(",")
   end

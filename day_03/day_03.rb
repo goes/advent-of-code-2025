@@ -1,10 +1,6 @@
 require "./day"
 
 class Day03 < Day
-  def initialize
-    super(3)
-  end
-
   def parse_input
     @banks = read_lines.map { |input| Bank.new(input) }
   end

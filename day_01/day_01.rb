@@ -1,10 +1,6 @@
 require "./day"
 
 class Day01 < Day
-  def initialize
-    super(1)
-  end
-
   def parse_input
     lines = read_lines
     @rotations = lines
