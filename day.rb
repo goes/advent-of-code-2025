@@ -38,7 +38,7 @@ class Day
   end
 
   def read_lines
-    File.readlines(file_name).collect(&:strip)
+    File.readlines(file_name).collect(&:chomp)
   end
 
   def log(string)
@@ -48,7 +48,7 @@ end
 
 class Location
   @@empty_char = "."
-  attr_accessor :value
+  attr_accessor :value, :x, :y
 
   def initialize(value, x, y, map)
     @value = value
@@ -67,6 +67,30 @@ class Location
 
   def neighbours
     @map.neighbours(@x, @y)
+  end
+
+  def neighbour_down
+    @map[@x, @y + 1]
+  end
+
+  def neighbour_up
+    @map[@x, @y - 1]
+  end
+
+  def neighbour_right
+    @map[@x + 1, @y]
+  end
+
+  def neighbour_left
+    @map[@x - 1, @y]
+  end
+
+  def to_s
+    "(#{@x}, #{@y}) #{@value.to_s}"
+  end
+
+  def inspect
+    to_s
   end
 end
 
@@ -106,6 +130,10 @@ class Map
 
   def locations
     @matrix.flatten
+  end
+
+  def to_s
+    @matrix.map { |row| row.map(&:value).join }.join("\n")
   end
 
   private
